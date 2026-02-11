@@ -284,10 +284,7 @@ export default function ConnectTheDotsGame() {
           onClick={handleOverlayTap}
         >
           <div style={{ fontSize: '2rem', color: '#e91e63', fontWeight: 'bold', marginBottom: '18px' }}>
-            Tap to play music 🎵
-          </div>
-          <div style={{ fontSize: '1.1rem', color: '#c2185b' }}>
-            (Required by browser for sound)
+            Tap to play!
           </div>
         </div>
       )}
