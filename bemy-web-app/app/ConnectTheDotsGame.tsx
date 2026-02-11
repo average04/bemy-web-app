@@ -134,8 +134,8 @@ function CatSprite({ x, y, facingLeft }: { x: number; y: number; facingLeft: boo
 
 function decodeName(raw: string | null): string | null {
   if (!raw) return null;
+
   try {
-    // URL-safe base64 → standard base64
     const b64 = raw.replace(/-/g, '+').replace(/_/g, '/');
     return atob(b64);
   } catch {
@@ -143,7 +143,9 @@ function decodeName(raw: string | null): string | null {
   }
 }
 
+
 export default function ConnectTheDotsGame() {
+    const [showOverlay, setShowOverlay] = useState(true);
   const searchParams = useSearchParams();
   const name = decodeName(searchParams.get('q'));
 
@@ -154,7 +156,7 @@ export default function ConnectTheDotsGame() {
   const [showShare, setShowShare] = useState(false);
   const [shareInput, setShareInput] = useState('');
   const [copied, setCopied] = useState(false);
-  const [musicOn, setMusicOn] = useState(true);
+  const [musicOn, setMusicOn] = useState(false);
   const audioRef  = useRef<HTMLAudioElement | null>(null);
   const swooshRef = useRef<HTMLAudioElement | null>(null);
   const wowRef    = useRef<HTMLAudioElement | null>(null);
@@ -165,19 +167,11 @@ export default function ConnectTheDotsGame() {
       audioRef.current = new Audio('/bg-music.mp3');
       audioRef.current.loop = true;
       audioRef.current.volume = 0.4;
-      if (musicOn) {
-        audioRef.current.play().catch(() => {});
-      }
     }
-  }, []);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      if (musicOn) {
-        audioRef.current.play().catch(() => {});
-      } else {
-        audioRef.current.pause();
-      }
+    if (musicOn) {
+      audioRef.current.play().catch(() => {});
+    } else {
+      audioRef.current.pause();
     }
   }, [musicOn]);
 
@@ -265,13 +259,45 @@ export default function ConnectTheDotsGame() {
   const facingLeft = facingLeftRef.current;
   const vbStr      = `${vb.x.toFixed(2)} ${vb.y.toFixed(2)} ${vb.w.toFixed(2)} ${vb.h.toFixed(2)}`;
 
+  const handleOverlayTap = () => {
+    setShowOverlay(false);
+    setMusicOn(true);
+  };
+
   return (
-    <div style={{
-      display: 'flex', flexDirection: 'column', alignItems: 'center',
-      justifyContent: 'center', minHeight: '100vh',
-      background: 'linear-gradient(135deg, #ffe8f0 0%, #ffd6e8 100%)',
-      padding: '20px', fontFamily: 'Georgia, serif',
-    }}>
+    <div style={{ position: 'relative' }}>
+      {showOverlay && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            background: 'rgba(255,240,246,0.95)',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+          }}
+          onClick={handleOverlayTap}
+        >
+          <div style={{ fontSize: '2rem', color: '#e91e63', fontWeight: 'bold', marginBottom: '18px' }}>
+            Tap to play music 🎵
+          </div>
+          <div style={{ fontSize: '1.1rem', color: '#c2185b' }}>
+            (Required by browser for sound)
+          </div>
+        </div>
+      )}
+      {/* ...existing code... */}
+      <div style={{
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        justifyContent: 'center', minHeight: '100vh',
+        background: 'linear-gradient(135deg, #ffe8f0 0%, #ffd6e8 100%)',
+        padding: '20px', fontFamily: 'Georgia, serif',
+      }}>
       <p style={{
         color: '#c2185b', marginBottom: '14px', fontSize: '0.9rem',
         letterSpacing: '0.04em', opacity: 0.85, margin: '0 0 14px',
@@ -547,5 +573,7 @@ export default function ConnectTheDotsGame() {
         }
       `}</style>
     </div>
-  );
+    </div>
+  )
 }
+
