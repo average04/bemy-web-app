@@ -487,7 +487,10 @@ export default function ConnectTheDotsGame() {
           <button
             onClick={() => { setShowShare(true); setCopied(false); setShareInput(''); }}
             style={{
-              padding: '10px 26px', fontSize: '0.95rem', fontWeight: 'bold',
+              padding: '10px', fontSize: '0.7rem', fontWeight: 'bold',
+              marginTop: '22px',
+              textAlign: 'center',
+              justifyContent: 'center',
               background: 'white', color: '#e91e63', border: '2px solid #e91e63',
               borderRadius: '999px', cursor: 'pointer',
             }}
