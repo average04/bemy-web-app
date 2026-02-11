@@ -1,4 +1,3 @@
-
 [build]
   base = "bemy-web-app/bemy-web-app"
   command = "npm run build"

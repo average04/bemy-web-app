@@ -162,11 +162,19 @@ export default function ConnectTheDotsGame() {
       audioRef.current = new Audio('/bg-music.mp3');
       audioRef.current.loop = true;
       audioRef.current.volume = 0.4;
+      if (musicOn) {
+        audioRef.current.play().catch(() => {});
+      }
     }
-    if (musicOn) {
-      audioRef.current.play().catch(() => {});
-    } else {
-      audioRef.current.pause();
+  }, []);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      if (musicOn) {
+        audioRef.current.play().catch(() => {});
+      } else {
+        audioRef.current.pause();
+      }
     }
   }, [musicOn]);
 
