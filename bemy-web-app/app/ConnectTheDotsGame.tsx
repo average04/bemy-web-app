@@ -372,10 +372,10 @@ export default function ConnectTheDotsGame() {
           animation: 'fadeInUp 0.9s ease both',
         }}>
           <div style={{ fontSize: '1.45rem', color: '#c2185b', fontWeight: 'bold', marginBottom: '18px' }}>
-            💌 {'Will you be my Valentine?'} 💌
-          </div>
-           <div style={{ fontSize: '1.45rem', color: '#c2185b', fontWeight: 'bold', marginBottom: '18px' }}>
              {name ? name : ''} 
+          </div>
+          <div style={{ fontSize: '1.45rem', color: '#c2185b', fontWeight: 'bold', marginBottom: '18px' }}>
+            💌 {'Will you be my Valentine?'} 💌
           </div>
           
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', alignItems: 'center' }}>
@@ -400,6 +400,10 @@ export default function ConnectTheDotsGame() {
             </button>
             <button
               onMouseEnter={() => setNoPos({
+                x: (Math.random() - 0.5) * 300,
+                y: (Math.random() - 0.5) * 200,
+              })}
+              onClick={() => setNoPos({
                 x: (Math.random() - 0.5) * 300,
                 y: (Math.random() - 0.5) * 200,
               })}
