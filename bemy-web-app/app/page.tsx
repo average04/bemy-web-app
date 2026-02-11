@@ -1,5 +1,10 @@
 import ConnectTheDotsGame from './ConnectTheDotsGame';
+import { Suspense } from 'react';
 
 export default function Home() {
-  return <ConnectTheDotsGame />;
+  return (
+    <Suspense fallback={<div />}> 
+      <ConnectTheDotsGame />
+    </Suspense>
+  );
 }
