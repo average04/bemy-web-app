@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import confetti from 'canvas-confetti';
+
 import { useSearchParams } from 'next/navigation';
 
 const CANVAS_W = 700;
@@ -387,12 +387,7 @@ export default function ConnectTheDotsGame() {
                   cheeringRef.current.currentTime = 0;
                   cheeringRef.current.play().catch(() => {});
                 }
-                confetti({
-                  particleCount: 120,
-                  spread: 90,
-                  origin: { y: 0.6 },
-                  zIndex: 9999
-                });
+
               }}
               style={{
                 padding: '12px 32px', fontSize: '1.1rem', fontWeight: 'bold',
