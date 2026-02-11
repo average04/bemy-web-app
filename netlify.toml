@@ -1,5 +1,5 @@
 [build]
-  base = "bemy-web-app/bemy-web-app"
+  base = "bemy-web-app"
   command = "npm run build"
   publish = ".next"
 

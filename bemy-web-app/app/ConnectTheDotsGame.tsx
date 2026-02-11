@@ -1,4 +1,7 @@
-﻿'use client';
+﻿
+'use client';
+
+import confetti from 'canvas-confetti';
 
 import { useState, useEffect, useRef } from 'react';
 
@@ -395,7 +398,11 @@ export default function ConnectTheDotsGame() {
                   cheeringRef.current.currentTime = 0;
                   cheeringRef.current.play().catch(() => {});
                 }
-
+                confetti({
+                  particleCount: 120,
+                  spread: 70,
+                  origin: { y: 0.6 }
+                });
               }}
               style={{
                 padding: '12px 32px', fontSize: '1.1rem', fontWeight: 'bold',
