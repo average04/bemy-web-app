@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "bemy-web-app/next.config.js", "use": "@vercel/node" },
+    { "src": "bemy-web-app/package.json", "use": "@vercel/next" }
+  ]
+}
