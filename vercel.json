@@ -1,7 +1,6 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "bemy-web-app/next.config.js", "use": "@vercel/node" },
-    { "src": "bemy-web-app/package.json", "use": "@vercel/next" }
-  ]
+  "buildCommand": "cd bemy-web-app && npm run build",
+  "outputDirectory": "bemy-web-app/.next",
+  "installCommand": "cd bemy-web-app && npm install",
+  "framework": "nextjs"
 }
