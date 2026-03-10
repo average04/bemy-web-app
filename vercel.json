@@ -1,6 +1,0 @@
-{
-  "buildCommand": "cd bemy-web-app && npm run build",
-  "outputDirectory": "bemy-web-app/.next",
-  "installCommand": "cd bemy-web-app && npm install",
-  "framework": "nextjs"
-}
